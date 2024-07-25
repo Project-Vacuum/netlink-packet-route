@@ -35,6 +35,7 @@ pub enum AddressFamily {
     Natm,
     Atm,
     Netgraph,
+    Bridge,
     Other(u8),
 }
 
@@ -72,6 +73,7 @@ impl From<u8> for AddressFamily {
             d if d == libc::AF_NATM as u8 => Self::Natm,
             d if d == libc::AF_ATM as u8 => Self::Atm,
             d if d == libc::AF_NETGRAPH as u8 => Self::Netgraph,
+            d if d == libc::AF_BRIDGE as u8 => Self::Bridge,
             _ => Self::Other(d),
         }
     }
@@ -111,6 +113,7 @@ impl From<AddressFamily> for u8 {
             AddressFamily::Natm => libc::AF_NATM as u8,
             AddressFamily::Atm => libc::AF_ATM as u8,
             AddressFamily::Netgraph => libc::AF_NETGRAPH as u8,
+            AddressFamily::Bridge => libc::AF_BRIDGE as u8,
             AddressFamily::Other(d) => d,
         }
     }
